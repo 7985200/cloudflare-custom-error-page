@@ -1,6 +1,6 @@
 # 甩锅 - Cloudflare 错误页生成器
 
-** 在线使用：https://7985200.github.io/cloudflare-custom-error-page/**
+ 在线使用：https://7985200.github.io/cloudflare-custom-error-page/
 
 一个**纯前端生成工具**：浏览器里填入参数 → 实时预览 → 一键下载一个**独立的 HTML 错误页**
 （自带全部 CSS 与图标，无外部依赖）。
