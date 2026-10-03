@@ -1,0 +1,181 @@
+/* ============================================================
+   生成器界面样式：纯黑白 + 圆角按钮
+   ============================================================ */
+
+:root {
+  --bg:        #ffffff;
+  --bg-soft:   #f5f5f5;
+  --fg:        #111111;
+  --fg-soft:   #666666;
+  --line:      #e2e2e2;
+  --line-strong:#111111;
+  --radius:    12px;
+  --radius-sm: 8px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------------- 顶栏 ---------------- */
+.topbar {
+  padding: 28px 24px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.topbar h1 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.topbar .sub {
+  margin: 0;
+  color: var(--fg-soft);
+  font-size: 13px;
+}
+
+/* ---------------- 布局 ---------------- */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(340px, 460px) 1fr;
+  gap: 0;
+  min-height: calc(100vh - 96px);
+}
+
+.panel {
+  padding: 22px 24px 32px;
+}
+.panel + .panel {
+  border-left: 1px solid var(--line);
+}
+
+.panel-title {
+  margin: 0 0 18px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg);
+}
+.panel-title .hint {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--fg-soft);
+  font-size: 12px;
+}
+
+/* ---------------- 表单 ---------------- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field {
+  display: block;
+  margin-bottom: 14px;
+}
+.field > span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-soft);
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 9px 12px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+textarea { resize: vertical; min-height: 62px; }
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--line-strong);
+  box-shadow: 0 0 0 3px rgba(17,17,17,.08);
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23111' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+
+/* ---------------- 按钮（圆角） ---------------- */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.btn {
+  appearance: none;
+  padding: 9px 18px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;          /* 圆角 */
+  cursor: pointer;
+  transition: background .15s, color .15s, transform .06s;
+}
+.btn:hover { background: var(--bg-soft); }
+.btn:active { transform: translateY(1px); }
+
+.btn-primary {
+  color: #fff;
+  background: var(--fg);
+  border-color: var(--fg);
+}
+.btn-primary:hover { background: #333; border-color: #333; }
+
+/* ---------------- 预览 ---------------- */
+.preview-panel {
+  display: flex;
+  flex-direction: column;
+}
+.preview {
+  flex: 1;
+  width: 100%;
+  min-height: 520px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+/* ---------------- 窄屏 ---------------- */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .panel + .panel { border-left: none; border-top: 1px solid var(--line); }
+  .grid { grid-template-columns: 1fr; }
+  .preview { min-height: 420px; }
+}
