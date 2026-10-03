@@ -1,5 +1,7 @@
 # Cloudflare 错误页生成器
 
+**🔗 在线使用：https://7985200.github.io/cloudflare-custom-error-page/**
+
 一个**纯前端生成工具**：浏览器里填入参数 → 实时预览 → 一键下载一个**独立的 HTML 错误页**
 （自带全部 CSS 与图标，无外部依赖）。
 
@@ -16,7 +18,15 @@
 
 ## 快速开始
 
-直接用浏览器打开 `web/index.html` 即可 —— 无需服务器、无需联网、无需安装任何东西。
+### 在线直接用（推荐）
+
+👉 **https://7985200.github.io/cloudflare-custom-error-page/**
+
+不用下载、不用部署，打开就能用。
+
+### 本地打开
+
+下载本仓库，用浏览器打开 `web/index.html` 即可 —— 无需服务器、无需联网、无需安装任何东西。
 
 ```
 web/
