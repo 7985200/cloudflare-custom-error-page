@@ -161,6 +161,30 @@ const COLO_NAMES = [
 
 const NODES = ['host', 'cloud', 'you'];
 
+/* ----------------------------------------------------------------------------
+   自动获取「访客真实 IP」
+   ----------------------------------------------------------------------------
+   真实 Cloudflare 页面显示的 IP 是服务端写入的访客 IP。
+   本工具产出的是静态 HTML，服务端拿不到，只能由浏览器侧请求公共 IP 接口获取，
+   再替换页脚那个 IP（它默认被「Click to reveal」按钮遮住，替换过程不可见）。
+   未填 IP 时注入本脚本；填了固定 IP 则不注入（此时源码与官方页面完全一致）。
+   ---------------------------------------------------------------------------- */
+const IP_FETCH_SCRIPT =
+  '<script>(function(){' +
+  "var el=document.getElementById('cf-footer-ip');if(!el)return;" +
+  'var apis=[' +
+  "'https://api64.ipify.org?format=json'," +
+  "'https://api.ipify.org?format=json'," +
+  "'https://ipapi.co/json/'" +
+  '];' +
+  '(function next(i){if(i>=apis.length)return;' +
+  'fetch(apis[i],{cache:"no-store"})' +
+  '.then(function(r){return r.json()})' +
+  '.then(function(d){var ip=d&&(d.ip||d.query||d.ip_address);' +
+  'if(ip){el.textContent=ip;}else{next(i+1);}})' +
+  '.catch(function(){next(i+1);});})(0);' +
+  '})();<\/script>\n';
+
 function esc(s) {
   return String(s == null ? '' : s)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -247,7 +271,9 @@ function buildErrorPage(opts) {
     (preset && preset.owner) || (preset ? '' : NODE_TEXT[lang][node][2]);
 
   const rayid = String(o.rayid || '').trim() || randomRayId();
-  const ip = String(o.ip || '').trim() || randomIp();
+  const ipFixed = String(o.ip || '').trim();        // 填了 → 固定显示该值
+  const ip = ipFixed || randomIp();                 // 留空 → 随机兜底，稍后被脚本替换
+  const ipScript = ipFixed ? '' : IP_FETCH_SCRIPT;  // 留空 → 注入「取访客真实 IP」脚本
   const colo = String(o.colo || '').trim() ||
     COLO_NAMES[Math.floor(Math.random() * COLO_NAMES.length)];
   const timestamp = String(o.timestamp || '').trim() || utcNow();
@@ -339,7 +365,7 @@ ${advice}
 
     </div>
 </div>
-</body>
+${ipScript}</body>
 </html>`;
 }
 
