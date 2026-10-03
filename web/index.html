@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloudflare 错误页生成器</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <h1>Cloudflare 错误页生成器</h1>
+  <p class="sub">
+    1:1 复刻 Cloudflare 官方错误页（<code>main.css</code> + 官方图标，已内联）。
+    纯前端、零依赖、不联网，产出为单文件 HTML。
+  </p>
+</header>
+
+<main class="layout">
+
+  <!-- ============ 左侧：参数 ============ -->
+  <section class="panel">
+    <h2 class="panel-title">参数</h2>
+
+    <div class="grid">
+      <label class="field">
+        <span>语言 / Language</span>
+        <select id="lang">
+          <option value="en">English（Cloudflare 默认）</option>
+          <option value="zh">中文</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>哪个节点出问题</span>
+        <select id="node">
+          <option value="host">源站主机（默认，最像 CF）</option>
+          <option value="cloud">Cloudflare</option>
+          <option value="you">浏览器（访客侧）</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="grid">
+      <label class="field">
+        <span>错误码</span>
+        <input id="code" type="text" value="502" placeholder="502 / 522 / 5201314">
+      </label>
+      <label class="field">
+        <span>站点名</span>
+        <input id="site" type="text" value="example.com" placeholder="example.com">
+      </label>
+    </div>
+
+    <label class="field">
+      <span>大标题（留空自动，如 Bad gateway）</span>
+      <input id="title" type="text" placeholder="留空 = 按错误码自动">
+    </label>
+
+    <label class="field">
+      <span>发生了什么？（留空自动）</span>
+      <textarea id="what" rows="3" placeholder="留空 = 按「错误码预设」或「出错节点」自动填充"></textarea>
+    </label>
+
+    <label class="field">
+      <span>给访客的建议（留空自动）</span>
+      <textarea id="visitor" rows="2" placeholder="留空自动"></textarea>
+    </label>
+
+    <label class="field">
+      <span>给站长的建议（留空则不显示该段）</span>
+      <textarea id="owner" rows="2" placeholder="留空 = 不渲染「所有者」段落"></textarea>
+    </label>
+
+    <div class="grid">
+      <label class="field">
+        <span>机房城市（留空随机）</span>
+        <input id="colo" type="text" placeholder="Amsterdam / Singapore …">
+      </label>
+      <label class="field">
+        <span>页脚品牌名</span>
+        <input id="brand" type="text" value="Cloudflare" placeholder="Cloudflare">
+      </label>
+    </div>
+
+    <div class="grid">
+      <label class="field">
+        <span>Ray ID（留空自动随机）</span>
+        <input id="rayid" type="text" placeholder="自动生成">
+      </label>
+      <label class="field">
+        <span>访客 IP（留空自动）</span>
+        <input id="ip" type="text" placeholder="自动生成">
+      </label>
+    </div>
+
+    <label class="field">
+      <span>页面时间（留空取当前 UTC）</span>
+      <input id="timestamp" type="text" placeholder="自动生成">
+    </label>
+
+    <div class="actions">
+      <button id="btn-download" class="btn btn-primary" type="button">下载 HTML</button>
+      <button id="btn-copy" class="btn" type="button">复制 HTML</button>
+      <button id="btn-preview" class="btn" type="button">新窗口预览</button>
+      <button id="btn-reset" class="btn" type="button">重置</button>
+    </div>
+  </section>
+
+  <!-- ============ 右侧：实时预览 ============ -->
+  <section class="panel preview-panel">
+    <h2 class="panel-title">
+      实时预览
+      <span class="hint">（下方就是最终产物）</span>
+    </h2>
+    <iframe id="preview" class="preview" title="预览"></iframe>
+  </section>
+
+</main>
+
+<!-- Cloudflare 官方错误页样式（图标已内联），必须先于 template.js 加载 -->
+<script src="cf-css.js"></script>
+<script src="template.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
