@@ -1,6 +1,6 @@
-# Cloudflare 错误页生成器
+# 甩锅 - Cloudflare 错误页生成器
 
-**🔗 在线使用：https://7985200.github.io/cloudflare-custom-error-page/**
+** 在线使用：https://7985200.github.io/cloudflare-custom-error-page/**
 
 一个**纯前端生成工具**：浏览器里填入参数 → 实时预览 → 一键下载一个**独立的 HTML 错误页**
 （自带全部 CSS 与图标，无外部依赖）。
@@ -20,7 +20,7 @@
 
 ### 在线直接用（推荐）
 
-👉 **https://7985200.github.io/cloudflare-custom-error-page/**
+ **https://7985200.github.io/cloudflare-custom-error-page/**
 
 不用下载、不用部署，打开就能用。
 
@@ -111,15 +111,6 @@ web/
 
 > 唯一的外部请求：留空访客 IP 时，页面会向公共 IP 接口查一次访客自己的 IP。
 > 填了固定 IP 则完全没有外部请求。
-
----
-
-## 说明与边界
-
-- 本工具**只生成静态 HTML**，不涉及任何部署、反代、拦截逻辑。
-- 生成物使用 Cloudflare 官方样式与图标资源；仅供**学习、演示、玩笑**使用。
-- 请只用于**你自己的站点**，或作为演示/玩笑。**不要**用于钓鱼、冒充他人站点等用途。
-- 若要上线，请自行确认符合所在地法律法规与相关服务条款。
 
 ## License
 
