@@ -1,0 +1,9 @@
+# 生成物（自己下载的错误页，不必提交）
+error-*.html
+*.tmp.html
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
