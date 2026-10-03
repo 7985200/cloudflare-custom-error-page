@@ -27,6 +27,13 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* body 用纵向 flex：内容区自适应，页脚自然贴底（内容超高时随页面滚动） */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 /* ---------------- 顶栏 ---------------- */
 .topbar {
   padding: 28px 24px 18px;
@@ -49,7 +56,7 @@ html, body {
   display: grid;
   grid-template-columns: minmax(340px, 460px) 1fr;
   gap: 0;
-  min-height: calc(100vh - 96px);
+  flex: 1;
 }
 
 .panel {
@@ -172,10 +179,42 @@ select {
   background: #fff;
 }
 
+/* ---------------- 页脚：开源仓库 ---------------- */
+.site-footer {
+  flex: none;
+  margin-top: 28px;
+  padding: 18px 24px 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: center;
+}
+
+.gh-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--fg-soft);
+  font-size: 13px;
+  text-decoration: none;
+  transition: color .15s ease, border-color .15s ease, background .15s ease;
+}
+
+.gh-link:hover {
+  color: #fff;
+  background: var(--fg);
+  border-color: var(--fg);
+}
+
+.gh-icon { flex: none; }
+
 /* ---------------- 窄屏 ---------------- */
 @media (max-width: 900px) {
   .layout { grid-template-columns: 1fr; }
   .panel + .panel { border-left: none; border-top: 1px solid var(--line); }
   .grid { grid-template-columns: 1fr; }
   .preview { min-height: 420px; }
+  .gh-link span { font-size: 12px; }
 }
