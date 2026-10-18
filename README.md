@@ -1,3 +1,6 @@
+<p align="center">
+  <img alt="Moe Counter" src="https://count.getloli.com/@cloudflare错误页.?theme=asoul&darkmode=auto&scale=1">
+</p>
 # 甩锅 - Cloudflare 错误页生成器
 
  在线使用：https://7985200.github.io/cloudflare-custom-error-page/
